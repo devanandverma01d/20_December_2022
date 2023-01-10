@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element.innerHTML v/s Element.value in JS and using Onclick, onkeyup and onchange eventhandler</title>
+    <style>
+        /*here we can write css code*/
+        #dem {
+            width: 800px;
+            height: 400px;
+            background-color: orangered;
+            padding: 20px;
+            margin: 50px auto;
+            border-radius: 15px 50px 15px 50px;
+            box-shadow: 8px 8px 3px;
+        }
+    </style>
+    <script>
+        /*We can write JS code before closing of haed tag*/
+    </script>
+</head>
+
+<body style="background-color: #383838;">
+    <div id="dem">
+        <h2>Element.innerHTML v/s Element.value in JS and using Onclick, onkeyup and onchange eventhandlers.</h2>
+        <div class="myclass">
+            <span>Good Morning</span>
+        </div>
+        <form action="">
+            <input type="text" onkeyup="myfun(this)"> <!-- 'this' it is an actual argument -->
+            <input type="text" onkeyup="myfun2(this)">
+            <select onchange="myfun4(this)">
+                <option value="Male">male</option>
+                <option value="Female">female</option>
+                <option value="Other">other</option>
+            </select>
+            <input type="radio">
+            <input type="checkbox">
+            <textarea name="" id="" cols="30" rows="3" onkeyup="myfun3(this)"></textarea>
+
+            <div id="demo"></div>
+            <div id="demo2"></div>
+            <div class="demo3"></div>
+            <div data-dev="demo4"></div>
+        </form>
+        <script>
+            /* We can write JS code before closing of body tag*/
+            //let's accdess DOM  element
+            //Document object model
+            //document.getElementById();
+            //document.queryselector();
+
+            //object.method()
+            //element==tag
+
+            let e1 = document.querySelector('.myclass');// L--R== Right to left Associativity.
+            //console.log(e1.innerHTML);// this is one  of  the methods to log/display js code.
+            console.log(e1.innerText);
+
+            //1.function feinition
+            function myfun(x) { // x is a formal argument
+                console.log(x.value);
+                document.getElementById('demo').innerHTML = x.value;
+            }
+            //1.  function definition
+            function myfun2(y) {//y is a formal argument
+                console.log(y.value);
+                document.getElementById('demo2').innerHTML = y.value;
+            }
+            //1.function definition
+            function myfun3(z) {
+                console.log(z.value);
+                document.querySelector('.demo3').innerHTML = z.value;
+
+            }
+            //1.function definition
+            function myfun4(a) {
+                console.log(a.value);
+                document.querySelector('div[data-dev = "demo4"]').innerHTML = a.value;
+
+            }
+
+            //let's take a simple test and check how "this" works inside an object
+            let student1 = {
+                name: "Raghvendra",
+                surname: 'Verma',
+
+                get_Name() {// it is method/function inside an object
+                    //console.log(this.name);
+                    console.log(this.name);
+
+                    //object.method
+                    this.get_Surname();   // this denotes function calling internally
+                },
+                get_Surname() {
+                    console.log(this.surname);
+                }
+            }
+            // calling function of an object
+            //object.method
+            student1.get_Name();
+        //object.method
+        // student1.get_Surname();  //  this function caslling from externally
+
+
+
+        </script>
+    </div>
+</body>
+
+</html>
